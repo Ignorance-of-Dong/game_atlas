@@ -1,0 +1,16 @@
+@import 'src/assets/style/px2rem.scss';
+.tabbar-wrapper {
+    width: 100%;
+    height: px2rem(100);
+    // background: #ccc;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .tabbar-item {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 px2rem(50)
+    }
+}

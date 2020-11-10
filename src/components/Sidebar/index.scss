@@ -1,0 +1,178 @@
+@import 'src/assets/style/px2rem.scss';
+
+.sidebar-wrapper {
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    background: #fff;
+    left: -80%;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    .sidebar-title {
+        width: 100%;
+        height: px2rem(350);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: px2rem(45) px2rem(50);
+        .sidebar-author-img {
+            width: px2rem(150);
+            height: px2rem(150);
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0px 0px 10px 4px #ccc;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .sidebar-author-name {
+            width: 100%;
+            text-align: center;
+            background-color: #fff;
+            margin: px2rem(20) 0;
+        }
+        .sidebar-author-sign {
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+    }
+    .sidebar-author-brand {
+        width: 100%;
+        padding: px2rem(20) px2rem(50);
+        box-shadow: inset 0px 0px 6px 1px #ccc;
+        .brand-content {
+            width: 100%;
+            border-radius: px2rem(10);
+            text-align: center;
+            height: px2rem(80);
+            font-size: 12px;
+            line-height: px2rem(80);
+            box-shadow: 0px 0px 6px 3px #ccc;
+            position: relative;
+            .icon-san {
+                position: absolute;
+                right: 0;
+                top: -50%;
+                color: red;
+                display: inline-block;
+                margin-left: px2rem(10);
+                animation: umbrella 10s linear;
+                animation-iteration-count: infinite;
+            }
+            .animation-two {
+                animation: umbrella 9s linear;
+                animation-iteration-count: infinite;
+            }
+        }
+    }
+    .sidebar-container {
+        width: 100%;
+        flex: 1;
+        overflow-y: auto;
+        .sidebar-content {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            .sidebar-content-item {
+                width: px2rem(180);
+                height: px2rem(180);
+                margin-left: px2rem(30);
+                margin-right: px2rem(30);
+                margin-top: px2rem(40);
+                text-align: center;
+                border-radius: px2rem(10);
+                line-height: px2rem(180);
+                box-shadow: 1px 1px 7px 0px #ccc;
+            }
+        }
+    }
+    
+}
+.siderbar-mask {
+    background: #403c3c75;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: -100%;
+    z-index: 99;
+}
+
+.sidebar-wrapper-animation {
+    z-index: 100;
+    animation: wrapper 0.5s;
+    animation-fill-mode: forwards;
+}
+.sidebar-mask-animation {
+    z-index: 90;
+    animation: mask 0.5s;
+    animation-fill-mode: forwards;
+}
+.sidebar-wrapper-back-animation {
+    animation: wrapper-back 0.5s;
+    animation-fill-mode: forwards;
+}
+.sidebar-mask-back-animation {
+    animation: mask-back 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes wrapper {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+@keyframes wrapper-back {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes mask {
+    0% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: .7;
+    }
+}
+@keyframes mask-back {
+    0% {
+        transform: translateX(100%);
+        opacity: .7;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+}
+
+@keyframes umbrella {
+    0% {
+        right: 0%;
+        top: -50%;
+    }
+    25% {
+        right: 100%;
+    }
+    50% {
+        top: 50%;
+    }
+    75% {
+        right: -0%;
+    }
+    100% {
+        top: -50%;
+    }
+}

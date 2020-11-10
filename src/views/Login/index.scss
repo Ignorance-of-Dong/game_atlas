@@ -1,0 +1,46 @@
+@import 'src/assets/style/px2rem.scss';
+.login-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #eef1d1;
+    display: flex;
+    flex-direction: column;
+    .login-container {
+        .title {
+            margin-top: px2rem(200);
+            text-align: center;
+            font: 700 100px "Comic Sans MS";
+            color: white;
+            text-shadow: 0 0 20px #fdec84,
+                    10px -10px 30px #ffae35,
+                    20px -20px 40px #ec760c,
+                    -20px -60px 50px #cd4607,
+                    0px -80px 60px #973717,
+                    10px -40px 70px #451b0e;
+    
+        }
+        .login-form {
+            margin-top: px2rem(150);
+            padding: 0 px2rem(80);
+            .login-form-item {
+                margin-top: px2rem(50);
+                ons-input {
+                    width: 100%;
+                    height: px2rem(100);
+                    .text-input {
+                        height: 100%;
+                    }
+                }
+                .text-input__label {
+                    top: 10px !important;
+                }
+            }
+        }
+    }
+    .login-footer {
+        margin-top: px2rem(300);
+        width: 100%;
+        padding: 0 px2rem(70);
+        height: px2rem(300);
+    }
+}

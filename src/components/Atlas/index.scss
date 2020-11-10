@@ -1,0 +1,32 @@
+@import 'src/assets/style/px2rem.scss';
+.image-container {
+    height: px2rem(500);
+    overflow: hidden;
+    margin:px2rem(30);
+    box-sizing: border-box;
+    border-radius: px2rem(10);
+    box-shadow: 1px 1px 5px 4px #ccc;
+    display: flex;
+    flex-direction: column;
+    img {
+        width: 100%;
+        height: px2rem(400);
+        object-fit: cover;
+        display: block;
+    }
+    .detail {
+        width: 100%;
+        flex: 1;
+        // background: green;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 px2rem(20);
+        align-items: center;
+        .atias-author {
+            color: coral;
+        }
+        .atias-create-time {
+            color: #7d7d7d;
+        }
+    }
+}
