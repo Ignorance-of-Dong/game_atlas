@@ -1,5 +1,12 @@
+/*
+ * @Author: zhangzheng
+ * @Date: 2020-11-02 18:12:24
+ * @LastEditors: zhangzheng
+ * @LastEditTime: 2020-11-11 16:07:23
+ * @Descripttion: 用户中心
+ */
 import React from "react"
-import Nabbar from "components/NavBar"
+import {Header} from "components/index"
 
 function DrawerContainer() {
     return <>
@@ -15,7 +22,7 @@ function UserCenter(props) {
 
     return <>
         <div>
-            <Nabbar leftClick={leftClick} title="用户中心" leftIcon="left"/>
+            <Header leftIconClick={leftClick} title="用户中心" leftIconName="left"/>
         </div>
     </>
 }

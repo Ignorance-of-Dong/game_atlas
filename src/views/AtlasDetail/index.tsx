@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import Nabbar from "components/NavBar"
+import {Header} from "components/index"
 function AtlasDetail(props) {
 
 
@@ -9,7 +9,7 @@ function AtlasDetail(props) {
 
     return <>
         <div>
-            <Nabbar leftClick={leftClick} title="湖心小猪" leftIcon="left"/>
+            <Header leftIconClick={leftClick} title="湖心小猪" leftIconName="left"/>
         </div>
     </>
 }

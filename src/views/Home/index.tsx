@@ -2,12 +2,11 @@
  * @Author: zhangzheng
  * @Date: 2020-10-30 14:50:28
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-10 15:07:38
+ * @LastEditTime: 2020-11-11 16:06:27
  * @Descripttion: 首页展示
  */
 import React, { useState } from  "react";
 import TabBar from "components/TabBar"
-import Nabbar from "components/NavBar"
 import { List, Slider } from 'antd-mobile';
 import Atlas from "components/Atlas"
 import Grow from "@material-ui/core/Grow";

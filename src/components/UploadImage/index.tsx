@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "./index.scss"
-import COS from "cos-js-sdk-v5"; //存储桶
+import COS from "cos-js-sdk-v5";
 import {Toast, Modal} from "antd-mobile"
-
+import {getCosKey} from "../../api"
+import { decode } from 'js-base64';
 interface uploadParams {
     successCallback: Function 
 }
@@ -19,12 +20,13 @@ export function ImageSelect(onChange, hideHandle,show) {
         >
             <span className="bottomImage">
             <span className="img-select">
-                <label htmlFor="imp-camera">拍照<input id="imp-camera" type="file" accept="image/*" hidden
-                                                     onChange={(e) => {
-                                                         Toast.loading('加载中',1)
-                                                         hideHandle()
-                                                         onChange(e)
-                                                     }}/></label>
+                <label htmlFor="imp-camera">
+                    拍照
+                <input id="imp-camera" type="file" accept="image/*" hidden
+                onChange={(e) => {
+                    hideHandle()
+                    onChange(e)
+                }}/></label>
             </span>
                 <span className="img-select">
                 <label htmlFor="imp-al">相册<input id="imp-al" type="file" accept="image/*" hidden onChange={(e) => {
@@ -49,18 +51,39 @@ function UploadImage(props: uploadParams) {
 
     let [text, settext] = useState("")
 
-    let [cos, setCos] = useState<any>(new COS({
-        SecretId: "AKIDLT0HI1bmqf8IDrvibja9RSEiuoSquGK7",
-        SecretKey: "d4ZnlRpvkIZZ7PP8Zm69vRjlWzzh9LFt"
-      }))
+    let [cos, setCos] = useState<any>(new COS())
+
+    useEffect(() => {
+        getCos()
+    },[])
+
+    // 自定义解密
+    function decrypt(str) {
+        let arr = [];
+        for (let index = 0; index < str.length; index++) {
+            if (index % 2 == 0) {
+                arr.push(str[index])
+            }
+        }
+        return arr.join("")
+    }
+
+    // 获取cos临时密钥
+    const getCos = async () => {
+        let res = await getCosKey()
+        let id = decrypt(decode(res.id))
+        let key = decrypt(decode(res.key))
+        setCos(new COS({
+            SecretId: id,
+            SecretKey: key
+        }))
+    }
     const uploadFile = (e) => {
         Toast.info('开始上传', 1);
         const file = e.target.files[0];
         const date = new Date().getTime(); // 获取上传日期，例：20200108
-        alert(44)
         let bucketPath = `tiandao/${date + file.name}`; // Key: 对象键（Object 的名称），对象在存储桶中的唯一标识
         putObject([bucketPath, file]);
-        
     }
     const putObject = ([key, file]) => {
         cos.putObject(
@@ -73,7 +96,6 @@ function UploadImage(props: uploadParams) {
           },
           err => {
             if (err) {
-                alert(JSON.stringify(err))
               Toast.fail(err, 3)
             } else {
                 Toast.success("文件上传成功", 3)
@@ -82,7 +104,6 @@ function UploadImage(props: uploadParams) {
                     Region: "ap-nanjing",
                     Key: key
                 });
-                alert(url)
                 successCallback(url)
             }
           }
@@ -103,9 +124,7 @@ function UploadImage(props: uploadParams) {
             <i className="iconfont icon-add"></i>
         </div>
         {text}
-        {
-            ImageSelect(uploadFile, hideHandle, show)
-        }
+        {ImageSelect(uploadFile, hideHandle, show)}
     </>
 }
 

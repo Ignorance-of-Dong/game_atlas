@@ -2,7 +2,7 @@
  * @Author: Mr.zheng
  * @Date: 2019-08-09 14:32:22
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-10 15:02:21
+ * @LastEditTime: 2020-11-11 16:09:59
  * @Description: 
  */
 import React from 'react'
@@ -11,6 +11,11 @@ export default {
         {
             path: "/login",
             component: React.lazy(() => import('../views/Login')),
+            exact: true
+        },
+        {
+            path: "/register",
+            component: React.lazy(() => import('../views/Register')),
             exact: true
         },
         {
