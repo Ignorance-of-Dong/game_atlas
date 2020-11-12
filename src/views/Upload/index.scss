@@ -10,6 +10,58 @@
         flex: 1;
         padding: px2rem(40) px2rem(20);
         overflow-y: auto;
+        position: relative;
+        .update-bottom {
+            width: 100%;
+            height: px2rem(100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 px2rem(30);
+            position: fixed;
+            background: #ffffffa3;
+            bottom: 0;
+            box-shadow: 0px 0px 6px 0px #ccc;
+            left: 0;
+            .update-button {
+                width: px2rem(200);
+                height: px2rem(60);
+                text-align: center;
+                line-height: px2rem(60);
+                box-shadow: 0px 0px 17px 0px #ccc;
+                border-radius: px2rem(10);
+            }
+        }
+        .update-form {
+            width: 100%;
+            .height-auto {
+                height: auto!important;
+            }
+            .update-input-item {
+                display: flex;
+                flex-direction: column;
+                .input-item-lable {
+                    height: px2rem(80);
+                    line-height: px2rem(80);
+                }
+                .input-item-innner {
+                    width: 100%;
+                    height: px2rem(80);
+                    input, textarea {
+                        box-shadow: inset 0px 0px 5px 0px #ccc;
+                        border-radius: px2rem(15);
+                        border: 0;
+                        width: 100%;
+                        height: 100%;
+                        text-indent: 14px;
+                    }
+                    textarea {
+                        height: px2rem(150);
+                        line-height: 1.5;
+                    }
+                }
+            }
+        }
         .upload-image-list {
             border-radius: px2rem(10);
             overflow: hidden;

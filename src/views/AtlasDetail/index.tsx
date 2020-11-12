@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import {Header} from "components/index"
+import "./index.scss"
 function AtlasDetail(props) {
 
 
@@ -8,8 +9,11 @@ function AtlasDetail(props) {
     }
 
     return <>
-        <div>
-            <Header leftIconClick={leftClick} title="湖心小猪" leftIconName="left"/>
+        <div className="detail-wrapper">
+            <Header leftIconClick={leftClick} title="湖心小猪" leftIconName="icon-back"/>
+            <div className="detail-content">
+                
+            </div>
         </div>
     </>
 }

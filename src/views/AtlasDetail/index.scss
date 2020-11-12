@@ -1,1 +1,12 @@
 @import 'src/assets/style/px2rem.scss';
+
+.detail-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .detail-content {
+        width: 100%;
+        flex: 1;
+    }
+}

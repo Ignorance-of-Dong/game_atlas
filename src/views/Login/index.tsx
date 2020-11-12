@@ -3,13 +3,19 @@ import { observer } from 'mobx-react'
 import "./index.scss"
 import Store from "./store"
 import { Page, Input, Button } from 'react-onsenui';
+import { List, InputItem, Toast } from 'antd-mobile';
 
 
 function Login(props) {
-    let { userName } = Store
 
     let [showDialog, setShowDialog] = useState(false)
     let [animationClass, setAnimationClass] = useState("")
+    let [panelType, setPanelType] = useState("login")
+    let [hasError, sethasError] = useState(false)
+    let [userName, setUserName] = useState("")
+    let [password, setPassword] = useState("")
+    let [confirmPsd, setConfirmPsd] = useState("")
+
 
     useEffect(() => {
         if (showDialog) {
@@ -24,20 +30,60 @@ function Login(props) {
             setAnimationClass("")
         }
     }, [])
+
     const jumpRouter = (path) => {
         props.history.push(path)
     }
+
+    const onErrorClick = () => {
+        // ..
+    }
+
+    const onChange = () => {
+        // ..
+    }
+
+    const reset = () => {
+        setPassword("")
+        setUserName("")
+        setConfirmPsd("")
+    }
+
+    const showLoginPanel = () => {
+        if (showDialog) return false
+        reset()
+        setShowDialog(true)
+        setPanelType("login")
+    }
+    const showRegisterPanel = () => {
+        if (showDialog) return false
+        reset()
+        setShowDialog(true)
+        setPanelType("register")
+    }
+
+    const submit = () => {
+        if (!userName || !password) {
+            Toast.info('账号或密码不能为空!!!!🧐', 1);
+            return;
+        }
+        if (panelType == "register" && confirmPsd != password) {
+            Toast.info('两次密码输入内容不同!!!!🧐', 1);
+        }
+        console.log(userName, password)
+    }
+
     return (
         <>
             <div className="login-wrapper">
                 <div className="login-container">
                     <div className="login-show-button">
-                        <div className="lining" onClick={() => {setShowDialog(true)}}>
+                        <div className="lining" onClick={() => {showLoginPanel()}}>
                             Login
                         </div>
                     </div>
                     <div className="register-show-button">
-                        <div className="lining">
+                        <div className="lining" onClick={() => {showRegisterPanel()}}>
                             Register
                         </div>
                     </div>
@@ -47,9 +93,48 @@ function Login(props) {
 
                         <div className="login-dialog-title">
                             <div className="login-text">
-                                login
+                                {panelType}
                             </div>
-                            <i className="iconfont icon-back" onClick={() => {setShowDialog(false)}}></i>
+                            <i className="iconfont icon-upper" onClick={() => {setShowDialog(false)}}></i>
+                        </div>
+                        <div className="login-dialog-content">
+                            <div className="input-item">
+                                <div className="input-lable">
+                                    账号:
+                                </div>
+                                <div className="input-wrapper">
+                                    <input type="text" value={userName} onChange={(e) => {
+                                        setUserName(e.target.value)
+                                    }}/>
+                                </div>
+                            </div>
+                            <div className="input-item">
+                                <div className="input-lable">
+                                    密码:
+                                </div>
+                                <div className="input-wrapper">
+                                    <input type="text" value={password} onChange={(e) => {
+                                        setPassword(e.target.value)
+                                    }}/>
+                                </div>
+                            </div>
+                            {
+                                panelType == "register" ?
+                                <div className="input-item">
+                                    <div className="input-lable">
+                                        确认密码:
+                                    </div>
+                                    <div className="input-wrapper">
+                                        <input type="text" value={confirmPsd} onChange={(e) => {
+                                            setConfirmPsd(e.target.value)
+                                        }}/>
+                                    </div>
+                                </div>:
+                                <></>
+                            }
+                            <div className="submit-buttom" onClick={() => {submit()}}>
+                                <i className="iconfont icon-login"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
