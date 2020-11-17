@@ -8,5 +8,23 @@
     .detail-content {
         width: 100%;
         flex: 1;
+        overflow-y: auto;
+        .detail-introduce {
+            width: 100%;
+            height: auto;
+            padding: px2rem(20);
+            div {
+                line-height: 1.5;
+                text-indent: 16px;
+            }
+        }
+        .detail-images {
+            width: 100%;
+            padding: 0 px2rem(20);
+            margin-bottom: px2rem(30);
+            .detail-images-item {
+                width: 100%;
+            }
+        }
     }
 }

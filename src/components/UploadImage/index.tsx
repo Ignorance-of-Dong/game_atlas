@@ -1,3 +1,11 @@
+/*
+ * @Author: zhangzheng
+ * @Date: 2020-11-10 15:32:02
+ * @LastEditors: zhangzheng
+ * @LastEditTime: 2020-11-13 15:10:45
+ * @Descripttion: 上传图片
+ */
+
 import React, { useEffect, useState } from "react"
 import "./index.scss"
 import COS from "cos-js-sdk-v5";

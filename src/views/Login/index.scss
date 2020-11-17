@@ -84,41 +84,6 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
-                .input-item {
-                    width: 100%;
-                    padding: 0 px2rem(20);
-                    display: flex;
-                    flex-direction: column;
-                    // justify-content: space-between;
-                    // align-items: center;
-                    // box-shadow: -1px 1px 1px #ccc;
-                    .input-lable {
-                        height: 100%;
-                        line-height: px2rem(100);
-                        text-align: center;
-                        margin-right: px2rem(20);
-                    }
-                    .input-wrapper {
-                        width: 100%;
-                        height: px2rem(90);
-                        border-radius: px2rem(15);
-                        padding-left: px2rem(10);
-                        // overflow: hidden;
-                        input {
-                            width: 100%;
-                            height: 100%;
-                            border: 0;
-                            box-shadow: inset 0px 0px 5px 0px #ccc;
-                            border-radius: px2rem(15);
-                            text-indent:4px;
-                        }
-                    }
-                    
-                    // .err-icon {
-                    //     width: px2rem();
-                    // }
-
-                }
                 .submit-buttom {
                     width: px2rem(150);
                     height: px2rem(150);

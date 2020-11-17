@@ -3,7 +3,9 @@ import { observer } from 'mobx-react'
 import "./index.scss"
 import Store from "./store"
 import { Page, Input, Button } from 'react-onsenui';
-import { List, InputItem, Toast } from 'antd-mobile';
+import { List, Toast } from 'antd-mobile';
+import {InputItem} from "components/index"
+import {register} from "../../api/index"
 
 
 function Login(props) {
@@ -62,13 +64,20 @@ function Login(props) {
         setPanelType("register")
     }
 
-    const submit = () => {
+    const submit = async () => {
         if (!userName || !password) {
             Toast.info('账号或密码不能为空!!!!🧐', 1);
             return;
         }
         if (panelType == "register" && confirmPsd != password) {
             Toast.info('两次密码输入内容不同!!!!🧐', 1);
+        }
+
+        if (panelType == "register") {
+            await register({
+                userName,
+                password
+            });
         }
         console.log(userName, password)
     }
@@ -98,38 +107,19 @@ function Login(props) {
                             <i className="iconfont icon-upper" onClick={() => {setShowDialog(false)}}></i>
                         </div>
                         <div className="login-dialog-content">
-                            <div className="input-item">
-                                <div className="input-lable">
-                                    账号:
-                                </div>
-                                <div className="input-wrapper">
-                                    <input type="text" value={userName} onChange={(e) => {
-                                        setUserName(e.target.value)
-                                    }}/>
-                                </div>
-                            </div>
-                            <div className="input-item">
-                                <div className="input-lable">
-                                    密码:
-                                </div>
-                                <div className="input-wrapper">
-                                    <input type="text" value={password} onChange={(e) => {
-                                        setPassword(e.target.value)
-                                    }}/>
-                                </div>
-                            </div>
+                            <InputItem lable="账号:" value={userName} onChange={(e) => {
+                                setUserName(e.target.value)
+                            }}/>
+                            <InputItem lable="密码:" value={password} onChange={(e) => {
+                                setPassword(e.target.value)
+                            }}/>
                             {
-                                panelType == "register" ?
-                                <div className="input-item">
-                                    <div className="input-lable">
-                                        确认密码:
-                                    </div>
-                                    <div className="input-wrapper">
-                                        <input type="text" value={confirmPsd} onChange={(e) => {
-                                            setConfirmPsd(e.target.value)
-                                        }}/>
-                                    </div>
-                                </div>:
+                                panelType == "register"
+                                ?
+                                <InputItem lable="确认密码:" value={confirmPsd} onChange={(e) => {
+                                    setConfirmPsd(e.target.value)
+                                }}/>
+                                :
                                 <></>
                             }
                             <div className="submit-buttom" onClick={() => {submit()}}>

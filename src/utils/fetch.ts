@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-11 10:04:36
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-11 15:36:56
+ * @LastEditTime: 2020-11-17 18:11:38
  * @Descripttion: 
  */
 import { Toasts, ToastLodingPro } from 'components/index'
@@ -52,8 +52,8 @@ class Fetch {
 			method: 'post',
 			headers: {
 				//  authorization: window.sessionStorage.getItem('token') ? window.sessionStorage.getItem('token') : null,
-				//  'Content-Type': 'application/json; charset=utf-8'
-				// token: sessionStorage.getItem('token') ? sessionStorage.getItem('token') : 'GSVDADGFN_WDBSADVD'
+				'Content-Type': 'application/json; charset=utf-8',
+				token: sessionStorage.getItem('token') ? sessionStorage.getItem('token') : 'GSVDADGFN_WDBSADVD'
 			},
 			credentials: "include",
 			mode: 'cors',

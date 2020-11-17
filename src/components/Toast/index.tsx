@@ -1,7 +1,14 @@
+/*
+ * @Author: zhangzheng
+ * @Date: 2020-11-11 15:25:00
+ * @LastEditors: zhangzheng
+ * @LastEditTime: 2020-11-13 15:10:21
+ * @Descripttion: loding加载
+ */
+
 import React from 'react'
 import ReactDOM from 'react-dom';
 import './index.scss'
-// import lodImage from 'assets/images/loding.png'
 function Toast(props: any): JSX.Element {
     return (
         <>

@@ -1,0 +1,13 @@
+@import 'src/assets/style/px2rem.scss';
+
+.upload-image-list {
+    border-radius: px2rem(10);
+    overflow: hidden;
+    margin-top: px2rem(20);
+    img {
+        width: 100%;
+        height: px2rem(400);
+        object-fit: cover;
+        display: block;
+    }
+}
