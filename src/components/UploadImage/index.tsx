@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-10 15:32:02
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-20 11:19:53
+ * @LastEditTime: 2020-11-20 17:53:04
  * @Descripttion: 上传图片
  */
 
@@ -13,7 +13,8 @@ import {Toast, Modal} from "antd-mobile"
 import {getCosKey} from "../../api"
 import { decode } from 'js-base64';
 interface uploadParams {
-    successCallback: Function 
+    successCallback: Function,
+    className?: string
 }
 
 export function ImageSelect(onChange, hideHandle,show) {
@@ -53,7 +54,7 @@ export function ImageSelect(onChange, hideHandle,show) {
 
 function UploadImage(props: uploadParams) {
 
-    let {successCallback} = props
+    let {successCallback, className} = props
 
     let [show, setShow] = useState(false)
 
@@ -87,10 +88,15 @@ function UploadImage(props: uploadParams) {
         }))
     }
     const uploadFile = (e) => {
+        let userId = sessionStorage.getItem("userId")
+        if (!userId) {
+            Toast.info('读取用户失败', 1);
+            return
+        }
         Toast.info('开始上传', 1);
         const file = e.target.files[0];
         const date = new Date().getTime(); // 获取上传日期，例：20200108
-        let bucketPath = `tiandao/${date + file.name}`; // Key: 对象键（Object 的名称），对象在存储桶中的唯一标识
+        let bucketPath = `tiandao/${userId}/${date + file.name}`; // Key: 对象键（Object 的名称），对象在存储桶中的唯一标识
         putObject([bucketPath, file]);
     }
     const putObject = ([key, file]) => {
@@ -125,7 +131,7 @@ function UploadImage(props: uploadParams) {
         setShow(true)
     }
     return <>
-        <div className="upload-image">
+        <div className={`upload-image ${className}`}>
             <input type="file" onClick={(e) => {
                 e.preventDefault()
                 showSelect()

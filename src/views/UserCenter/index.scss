@@ -1,0 +1,112 @@
+@import 'src/assets/style/px2rem.scss';
+
+.user-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    .user-container {
+        width: 100%;
+        flex: 1;
+        // padding: px2rem(20) px2rem(40);
+        .user-title {
+            width: 100%;
+            height: px2rem(400);
+            background: linear-gradient(90deg, #496eaa, #944fa8, #a8804f, #496eaa);
+            background-size:1000% 300%;
+            animation:mymove 20s ease infinite;
+            position: relative;
+            .title-mask {
+                box-shadow: 0px 0px 9px 2px #ccc;
+                position: absolute;
+                width: 90%;
+                height: px2rem(400);
+                background: #fff;
+                border-radius: px2rem(10);
+                left: 50%;
+                top: 45%;
+                transform: translateX(-50%);
+                padding: px2rem(20);
+                .user-edit {
+                    position: absolute;
+                    right: 3%;
+                }
+                .user-avator {
+                    margin: 0 auto;
+                    width: px2rem(150);
+                    height: px2rem(150);
+                    border-radius: 50%;
+                    background: #fff;
+                    box-shadow: 0px 0px 10px 4px #ccc;
+                    overflow: hidden;
+                    position: relative;
+                    .update-cream {
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        position: absolute;
+                        text-align: center;
+                        background: #0000003d;
+                        .update {
+                            position: absolute;
+                            top: 0;
+                            opacity: 0;
+                        }
+                        i {
+                            line-height: px2rem(150);
+                            color: #fff;
+                            font-size: px2rem(60);
+                        }
+                    }
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .user-name, .user-sign, .user-brand {
+                    width: 100%;
+                    text-align: center;
+                    margin-top: px2rem(30);
+                }
+                .user-sign {
+                    margin-top: px2rem(40);
+                }
+            }
+        }
+        .user-features {
+            width: 100%;
+            height: px2rem(600);
+            // background: #ccc;
+            position: absolute;
+            bottom: 10%;
+            padding: px2rem(20);
+            .features-item {
+                width: 100%;
+                height: px2rem(100);
+                background: #fff;
+                box-shadow: 0px 0px 10px 2px #ccc;
+                border-radius: px2rem(10);
+                text-align: center;
+                line-height: px2rem(100);
+                margin-bottom: px2rem(40);
+            }
+        }
+    }
+}
+
+@keyframes mymove{
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+.MuiTextField-root {
+    width: px2rem(600)!important;
+    margin-bottom: px2rem(40)!important;
+}

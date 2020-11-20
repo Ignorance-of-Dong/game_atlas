@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-10 15:00:05
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-19 18:42:38
+ * @LastEditTime: 2020-11-20 11:30:27
  * @Descripttion: 图集上传
  */
 
@@ -37,6 +37,7 @@ function Upload(props): JSX.Element {
                 explain: introduce,
                 imgList: imgList
             })
+            props.history.push("/index")
         } catch (error) {
             
         }

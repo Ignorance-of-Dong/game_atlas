@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-11 10:04:54
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-19 18:22:04
+ * @LastEditTime: 2020-11-20 18:04:29
  * @Descripttion: api接口请求
  */
 import fetch from "../utils/fetch"
@@ -40,5 +40,10 @@ export function getAtlasList(params) {
 // 查询详情
 export function getAtlasDeatil(params) {
     return fetch.post('game/atlas/detail', params)
+}
+
+// 修改用户信息
+export function updateInfoApi(params) {
+    return fetch.post('game/update/userinfo', params)
 }
 

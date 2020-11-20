@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-02 16:26:20
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-18 18:33:29
+ * @LastEditTime: 2020-11-20 18:27:00
  * @Descripttion: 侧边栏
  */
 import React, {useEffect, useState} from "react"
@@ -64,7 +64,7 @@ function Sidebar(props: sideBarParams): JSX.Element {
         <div className={`siderbar-mask ${maskClass}`} onClick={() => {closeCallback(false)}}></div> 
         <div className={`sidebar-wrapper ${wrapperClass}`}>
             <div className="sidebar-title">
-                <div className="sidebar-author-img">
+                <div className="sidebar-author-img" onClick={() => {jumpRouter("/user")}}>
                     <img src={info.author} alt=""/>
                 </div>
                 <div className="sidebar-author-name">
@@ -87,15 +87,15 @@ function Sidebar(props: sideBarParams): JSX.Element {
                         上传
                     </div>
                     <div className="sidebar-content-item">
-                        收藏
+                        开发中...
                     </div>
                 </div>
                 <div className="sidebar-content">
                     <div className="sidebar-content-item">
-                        收藏图集
+                        开发中...
                     </div>
                     <div className="sidebar-content-item">
-                        收藏图集
+                        开发中...
                     </div>
                 </div>
             </div>
