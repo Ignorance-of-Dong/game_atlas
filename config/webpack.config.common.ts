@@ -1,8 +1,8 @@
 /*
  * @Author: Mr.zheng
  * @Date: 2019-12-04 10:10:00
- * @LastEditors: Mr.zheng
- * @LastEditTime: 2019-12-04 10:10:00
+ * @LastEditors: zhangzheng
+ * @LastEditTime: 2020-11-20 11:00:11
  * @Description: webpack公共配置【对文件的处理以及解析】
  */
 import path from 'path'
@@ -15,7 +15,8 @@ module.exports = {
 		build: path.resolve(process.cwd(), 'src/index.tsx')
 	},
 	output: {
-		path: path.resolve(__dirname, '../build')
+		// 输出目录
+		path: path.resolve(__dirname, '../atlas')
 	},
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js', '.jsx', '.css', '.scss' ],
@@ -127,7 +128,6 @@ module.exports = {
 				removeAttributeQuotes:true,
 				removeComments:true
 			},
-			chunks: ['build'],
 			template: path.resolve(process.cwd(), 'public/index.html'), // 指定模板路径
 		})
 	],

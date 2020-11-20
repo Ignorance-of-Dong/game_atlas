@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-10 15:00:05
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-13 15:04:54
+ * @LastEditTime: 2020-11-19 18:42:38
  * @Descripttion: 图集上传
  */
 
@@ -11,14 +11,12 @@ import {Header, UploadImage} from "components/index"
 import { PhotoProvider, PhotoConsumer } from 'react-photo-view';
 import {InputItem, PreviewImage} from "components/index"
 import "./index.scss"
+import {UploadAtlas} from "../../api/index"
 
 
 function Upload(props): JSX.Element {
 
-    let [imgList, setImgList] = useState([
-        "https://tx-1256006071.cos.ap-nanjing.myqcloud.com/tiandao/1605174295868WechatIMG348.png",
-        "https://tx-1256006071.cos.ap-nanjing.myqcloud.com/tiandao/1605174295868WechatIMG348.png"
-    ])
+    let [imgList, setImgList] = useState([])
     let [title, setTitle] = useState("")
 	let [introduce, setIntroduce] = useState("")
 
@@ -30,6 +28,18 @@ function Upload(props): JSX.Element {
             ...imgList,
             url
         ])
+    }
+    const handelUpload = async () => {
+        try {
+            await UploadAtlas({
+                userId: sessionStorage.getItem("userId"),
+                name: title,
+                explain: introduce,
+                imgList: imgList
+            })
+        } catch (error) {
+            
+        }
     }
     return <>
         <div className="upload-wrapper">
@@ -47,7 +57,7 @@ function Upload(props): JSX.Element {
                     <div className="left-text">
                         本次上传图片：{imgList.length}
                     </div>
-                    <div className="update-button">
+                    <div className="update-button" onClick={() => {handelUpload()}}>
                         上传
                     </div>
                 </div>

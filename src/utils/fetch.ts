@@ -2,11 +2,18 @@
  * @Author: zhangzheng
  * @Date: 2020-11-11 10:04:36
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-17 18:11:38
+ * @LastEditTime: 2020-11-20 11:12:05
  * @Descripttion: 
  */
 import { Toasts, ToastLodingPro } from 'components/index'
-const BASEHOST = 'http://localhost:3009/'
+
+
+let BASEHOST = ""
+if (process.env.NODE_ENV == "development") {
+	BASEHOST = 'http://localhost:3009/'
+} else {
+	BASEHOST = 'http://atlasserver.fishfairy.cn/'
+}
 
 
 class Fetch {

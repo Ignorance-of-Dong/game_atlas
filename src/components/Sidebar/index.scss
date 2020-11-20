@@ -92,6 +92,20 @@
             }
         }
     }
+    .sidebar-bottom {
+        width: 100%;
+        padding: px2rem(20) px2rem(30);
+        .bottom-buttom {
+            width: 100%;
+            border-radius: px2rem(10);
+            text-align: center;
+            height: px2rem(80);
+            font-size: 12px;
+            line-height: px2rem(80);
+            box-shadow: 0px 0px 6px 3px #ccc;
+            position: relative;
+        }
+    }
     
 }
 .siderbar-mask {

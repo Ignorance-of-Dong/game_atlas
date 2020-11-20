@@ -2,11 +2,12 @@
  * @Author: zhangzheng
  * @Date: 2020-11-02 16:26:20
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-10 15:08:45
+ * @LastEditTime: 2020-11-18 18:33:29
  * @Descripttion: 侧边栏
  */
 import React, {useEffect, useState} from "react"
 import "./index.scss"
+import {getLoginUserInfo} from "../../api"
 
 interface sideBarParams {
     open: Boolean,
@@ -23,6 +24,7 @@ function Sidebar(props: sideBarParams): JSX.Element {
 
     let [maskClass, setMaskClass] = useState("")
     let [wrapperClass, setWrapperClass] = useState("")
+    let [info, setInfo] = useState<any>({})
 
     useEffect(() => {
         if (open) {
@@ -39,10 +41,23 @@ function Sidebar(props: sideBarParams): JSX.Element {
             setMaskClass("")
             setWrapperClass("")
         }
+        getUserInfo()
     }, [])
+
+    const getUserInfo = async () => {
+        let info = await getLoginUserInfo({
+            userId: sessionStorage.getItem("userId")
+        });
+        setInfo(info)
+    }
 
     const jumpRouter = (path) => {
         props.history.push(path)
+    }
+
+    const Logout = () => {
+        sessionStorage.removeItem("userId")
+        jumpRouter("/login")
     }
     
     return <>
@@ -50,18 +65,18 @@ function Sidebar(props: sideBarParams): JSX.Element {
         <div className={`sidebar-wrapper ${wrapperClass}`}>
             <div className="sidebar-title">
                 <div className="sidebar-author-img">
-                    <img src="https://mirror-gold-cdn.xitu.io/168e51435d5db4da35f?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" alt=""/>
+                    <img src={info.author} alt=""/>
                 </div>
                 <div className="sidebar-author-name">
-                    小鱼仙官
+                    {info.name}
                 </div>
                 <div className="sidebar-author-sign">
-                    倥侗无知，半世迷离
+                    {info.sign}
                 </div>
             </div>
             <div className="sidebar-author-brand">
                 <div className="brand-content">
-                    天官赐福，百无禁忌
+                    {info.brand}
                     <i className="iconfont icon-san"></i>
                     <i className="iconfont icon-san animation-two"></i>
                 </div>
@@ -82,6 +97,11 @@ function Sidebar(props: sideBarParams): JSX.Element {
                     <div className="sidebar-content-item">
                         收藏图集
                     </div>
+                </div>
+            </div>
+            <div className="sidebar-bottom">
+                <div className="bottom-buttom" onClick={() => {Logout()}}>
+                    登出
                 </div>
             </div>
         </div>

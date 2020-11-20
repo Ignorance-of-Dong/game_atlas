@@ -5,6 +5,8 @@ import App from './App';
 import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 import 'react-photo-view/dist/index.css';
-ReactDOM.render(<App />, document.getElementById('root'));
+import { Provider } from "mobx-react";
+import Store from './store/index'
+ReactDOM.render(<Provider Store={Store}><App /></Provider>, document.getElementById('root'));
 
 

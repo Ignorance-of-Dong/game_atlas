@@ -1,9 +1,12 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {Header} from "components/index"
 import {PreviewImage} from "components/index"
+import query from '../../utils/useQuery'
+import {getAtlasDeatil} from "../../api/index"
 import "./index.scss"
 function AtlasDetail(props) {
 
+    let {id} = query()
     let [imgList, setImgList] = useState([
         "https://tx-1256006071.cos.ap-nanjing.myqcloud.com/tiandao/1605174295868WechatIMG348.png",
         "https://tx-1256006071.cos.ap-nanjing.myqcloud.com/tiandao/1605174295868WechatIMG348.png",
@@ -11,22 +14,35 @@ function AtlasDetail(props) {
         "https://tx-1256006071.cos.ap-nanjing.myqcloud.com/tiandao/1605174295868WechatIMG348.png"
     ])
 
+    let [detail, setDeatil] = useState<any>(null)
+
     const leftClick = () => {
         props.history.push("/index")
     }
 
+    useEffect(() => {
+        getDeatil()
+    }, [])
+
+    const getDeatil = async () => {
+        let detail = await getAtlasDeatil({
+            atlasId: id
+        })
+        setDeatil(detail)
+    }
+
     return <>
         <div className="detail-wrapper">
-            <Header leftIconClick={leftClick} title="湖心小猪" leftIconName="icon-back"/>
+            <Header leftIconClick={leftClick} title={detail && detail.name} leftIconName="icon-back"/>
             <div className="detail-content">
                 <div className="detail-introduce">
                     介绍：
                     <div>
-                        江城子 . 程序员之歌江城子 . 程序员之歌江城子 . 程序员之歌江城子 . 程序员之歌江城子 . 程序员之歌
+                    {detail && detail.explain}
                     </div>
                 </div>
                 <div className="detail-images">
-                    <PreviewImage imgList={imgList}/>
+                    <PreviewImage imgList={detail ? detail.imgList : []}/>
                 </div>
             </div>
         </div>

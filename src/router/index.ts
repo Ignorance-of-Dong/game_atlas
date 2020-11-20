@@ -2,7 +2,7 @@
  * @Author: Mr.zheng
  * @Date: 2019-08-09 14:32:22
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-11 16:09:59
+ * @LastEditTime: 2020-11-19 10:38:47
  * @Description: 
  */
 import React from 'react'
@@ -11,32 +11,44 @@ export default {
         {
             path: "/login",
             component: React.lazy(() => import('../views/Login')),
-            exact: true
+            exact: true,
+            requireAuth: false
         },
         {
             path: "/register",
             component: React.lazy(() => import('../views/Register')),
-            exact: true
+            exact: true,
+            requireAuth: false
         },
         {
             path: "/index",
             component: React.lazy(() => import('../views/Home')),
-            exact: true
+            exact: true,
+            requireAuth: true
         },
         {
             path: "/detail",
             component: React.lazy(() => import('../views/AtlasDetail')),
-            exact: true
+            exact: true,
+            requireAuth: true
         },
         {
             path: "/user",
             component: React.lazy(() => import('../views/UserCenter')),
-            exact: true
+            exact: true,
+            requireAuth: true
         },
         {
             path: "/upload",
             component: React.lazy(() => import('../views/Upload')),
-            exact: true
+            exact: true,
+            requireAuth: true
+        },
+        {
+            path: "/run",
+            component: React.lazy(() => import('../views/Run')),
+            exact: true,
+            requireAuth: true
         },
     ]
 }

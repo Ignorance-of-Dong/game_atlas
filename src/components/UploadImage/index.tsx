@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-10 15:32:02
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-13 15:10:45
+ * @LastEditTime: 2020-11-20 11:19:53
  * @Descripttion: 上传图片
  */
 
@@ -106,13 +106,14 @@ function UploadImage(props: uploadParams) {
             if (err) {
               Toast.fail(err, 3)
             } else {
-                Toast.success("文件上传成功", 3)
+                Toast.success("文件上传成功", 1)
                 const url = cos.getObjectUrl({
                     Bucket: "tx-1256006071",
                     Region: "ap-nanjing",
                     Key: key
                 });
-                successCallback(url)
+                let resultUrl = url.split("?")[0]
+                successCallback(resultUrl)
             }
           }
         );

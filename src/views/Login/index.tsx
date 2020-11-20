@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import "./index.scss"
 import Store from "./store"
 import { Page, Input, Button } from 'react-onsenui';
 import { List, Toast } from 'antd-mobile';
 import {InputItem} from "components/index"
-import {register} from "../../api/index"
+import {login, register} from "../../api/index"
 
 
 function Login(props) {
@@ -17,6 +17,8 @@ function Login(props) {
     let [userName, setUserName] = useState("")
     let [password, setPassword] = useState("")
     let [confirmPsd, setConfirmPsd] = useState("")
+
+    let {getUserInfo} = props.Store
 
 
     useEffect(() => {
@@ -74,11 +76,25 @@ function Login(props) {
         }
 
         if (panelType == "register") {
-            await register({
+            try {
+                await register({
+                    userName,
+                    password
+                });
+                setShowDialog(false)
+            } catch {
+                // ..
+            }
+        } else {
+            let userInfo = await login({
                 userName,
                 password
             });
+            sessionStorage.setItem("userId", userInfo.userId)
+            getUserInfo(userInfo)
+            jumpRouter("/index")
         }
+        
         console.log(userName, password)
     }
 
@@ -158,4 +174,4 @@ function Login(props) {
     )
 }
 
-export default observer(Login);
+export default inject('Store')(observer(Login));
