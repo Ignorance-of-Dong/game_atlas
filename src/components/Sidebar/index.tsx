@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-02 16:26:20
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-20 18:27:00
+ * @LastEditTime: 2020-11-23 16:11:07
  * @Descripttion: 侧边栏
  */
 import React, {useEffect, useState} from "react"
@@ -86,8 +86,8 @@ function Sidebar(props: sideBarParams): JSX.Element {
                     <div className="sidebar-content-item" onClick={() => jumpRouter("/upload")}>
                         上传
                     </div>
-                    <div className="sidebar-content-item">
-                        开发中...
+                    <div className="sidebar-content-item" onClick={() => jumpRouter("/private")}>
+                        Private
                     </div>
                 </div>
                 <div className="sidebar-content">

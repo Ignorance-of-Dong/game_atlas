@@ -17,7 +17,7 @@ function AtlasDetail(props) {
     let [detail, setDeatil] = useState<any>(null)
 
     const leftClick = () => {
-        props.history.push("/index")
+        props.history.go(-1)
     }
 
     useEffect(() => {
@@ -31,9 +31,13 @@ function AtlasDetail(props) {
         setDeatil(detail)
     }
 
+    const editAstal = () => {
+        props.history.push(`/upload?id=${detail.atlasId}`)
+    }
+
     return <>
         <div className="detail-wrapper">
-            <Header leftIconClick={leftClick} title={detail && detail.name} leftIconName="icon-back"/>
+            <Header leftIconClick={leftClick} title={detail && detail.name} leftIconName="icon-back" rightIconName="icon-edit" rightIconClick={editAstal}/>
             <div className="detail-content">
                 <div className="detail-introduce">
                     介绍：

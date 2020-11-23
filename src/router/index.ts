@@ -2,7 +2,7 @@
  * @Author: Mr.zheng
  * @Date: 2019-08-09 14:32:22
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-19 10:38:47
+ * @LastEditTime: 2020-11-23 16:01:56
  * @Description: 
  */
 import React from 'react'
@@ -47,6 +47,12 @@ export default {
         {
             path: "/run",
             component: React.lazy(() => import('../views/Run')),
+            exact: true,
+            requireAuth: true
+        },
+        {
+            path: "/private",
+            component: React.lazy(() => import('../views/PrivateList')),
             exact: true,
             requireAuth: true
         },

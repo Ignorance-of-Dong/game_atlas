@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-13 14:28:32
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-13 15:09:39
+ * @LastEditTime: 2020-11-23 18:20:49
  * @Descripttion: 图片预览组件封装
  */
 
@@ -10,7 +10,9 @@ import React, { useState } from "react"
 import { PhotoProvider, PhotoConsumer } from 'react-photo-view'
 import "./index.scss"
 interface previewImageParams {
-    imgList: Array<any>
+    imgList: Array<any>,
+    idEdit?: Boolean,
+    deleteCallback?: Function
 }
 const FullScreenIcon = (props: React.HTMLAttributes<any>) => {
     const [fullscreen, setFullscreen] = useState<boolean>(false);
@@ -39,7 +41,7 @@ const FullScreenIcon = (props: React.HTMLAttributes<any>) => {
 
 function PreviewImage(props: previewImageParams): JSX.Element {
     
-    let {imgList} = props
+    let {imgList, idEdit, deleteCallback} = props
 
     function toggleFullScreen() {
         if (document.fullscreenElement) {
@@ -74,11 +76,24 @@ function PreviewImage(props: previewImageParams): JSX.Element {
             }}
         >
             {imgList.map((item, index) => (
-                <PhotoConsumer key={index} src={item}>
+                 <div key={index}>
+                    <PhotoConsumer key={index} src={item}>
                         <div className="upload-image-list" key={index}>
-                        <img src={item} alt="加载失败"/>
-                    </div>
-                </PhotoConsumer>
+                            <img src={item} alt="加载失败" onClick={(): Boolean => {return false}}/>
+                        </div>
+                    </PhotoConsumer>
+                    {
+                        idEdit
+                        ?
+                        <div className="delete-button" onClick={(e) => {
+                            deleteCallback(item)
+                        }}>
+                            <i className="iconfont icon-delete"></i>删除
+                        </div>
+                        :
+                        <></>
+                    }
+                </div>
             ))}
         </PhotoProvider>
     </>

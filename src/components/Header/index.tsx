@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-09 14:49:37
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-09 15:31:56
+ * @LastEditTime: 2020-11-23 14:55:21
  * @Descripttion: header组件
  */
 import React, {useState, MouseEvent} from "react"
@@ -38,7 +38,9 @@ function Header(props: headerParms):JSX.Element {
             <div className="game-header-title">
                 {title}
             </div>
-            <i className={`iconfont ${rightIconName}`} onClick={() => rightIconClick()}></i>
+            <i className={`iconfont ${rightIconName}`} onClick={() => {
+                rightIconClick()
+            }}></i>
         </div>
     </>
 }

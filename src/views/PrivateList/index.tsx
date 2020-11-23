@@ -2,18 +2,18 @@
  * @Author: zhangzheng
  * @Date: 2020-10-30 14:50:28
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-23 17:32:38
- * @Descripttion: 首页展示
+ * @LastEditTime: 2020-11-23 17:33:00
+ * @Descripttion: 自己上传图片
  */
-import React, { useCallback, useEffect, useState } from  "react";
+import React, { useEffect, useState } from  "react";
 import { observer, inject } from 'mobx-react';
 import { List, Slider } from 'antd-mobile';
 import Atlas from "components/Atlas"
 import Grow from "@material-ui/core/Grow";
 import Paper from '@material-ui/core/Paper';
-import "./index.scss"
+import "../Home/index.scss"
 import {Header, Sidebar} from "components/index"
-import {getAtlasList} from "../../api/index"
+import {getPrivateList} from "../../api/index"
 const Item = List.Item;
 
 
@@ -27,27 +27,25 @@ function Home(props) {
     let [atlasList, setAtlasList] = useState([])
     let {userInfo} = props.Store
 
-    const closeSlide = (status) => {
-        setOpen(status)
-    }
+   
     const leftIconClick = () => {
-        setOpen(true)
+        props.history.push("/index")
     }
+
+    useEffect(() => {
+        getAtlas()
+    }, [])
 
     const deleteCallback = async () => {
         let params = {
             pageNo: 1,
             pageSize
         }
-        let res = await getAtlasList(params)
+        let res = await getPrivateList(params)
         setAtlasList(res.atlasList)
         setPageNo(res.pageNo)
         setPageTotal(res.pageTotal)
     }
-    useEffect(() => {
-        getAtlas()
-    }, [])
-
     const scrollBottom = (e) => {
         let root: any = document.getElementsByClassName("home-container")[0]
         let scrollTop = root.scrollTop
@@ -62,7 +60,7 @@ function Home(props) {
         }
     }
 
-    const getAtlas = useCallback(async (page?) => {
+    const getAtlas = async (page?) => {
         let num
         if (page) {
             num = page
@@ -70,21 +68,21 @@ function Home(props) {
             num = pageNo
         }
         let params = {
+            userId: sessionStorage.getItem("userId"),
             pageNo: num,
             pageSize
         }
-        let res = await getAtlasList(params)
+        let res = await getPrivateList(params)
         setAtlasList([
             ...atlasList,
             ...res.atlasList
         ])
         setPageNo(res.pageNo)
         setPageTotal(res.pageTotal)
-    }, [atlasList])
+    }
     return <>
         <div className="home-wrapper">
-            <Header leftIconClick={leftIconClick} rightIconName=""/>
-            <Sidebar open={open} closeCallback={closeSlide} {...props} userInfo={userInfo}/>
+            <Header leftIconClick={leftIconClick} title="private" leftIconName="icon-back" rightIconName=""/>
             <div className="home-container" onScroll={(e) => {scrollBottom(e)}}>
             {
                 atlasList.map((item, index) => {
@@ -95,7 +93,7 @@ function Home(props) {
                 </Grow>
                 })
             }
-        </div>
+            </div>
         </div>
     </>
 }

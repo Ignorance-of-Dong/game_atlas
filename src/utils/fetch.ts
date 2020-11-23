@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-11 10:04:36
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-20 11:12:05
+ * @LastEditTime: 2020-11-23 14:53:14
  * @Descripttion: 
  */
 import { Toasts, ToastLodingPro } from 'components/index'
@@ -10,9 +10,9 @@ import { Toasts, ToastLodingPro } from 'components/index'
 
 let BASEHOST = ""
 if (process.env.NODE_ENV == "development") {
-	BASEHOST = 'http://localhost:3009/'
+	BASEHOST = 'http://localhost:3009/game'
 } else {
-	BASEHOST = 'http://atlasserver.fishfairy.cn/'
+	BASEHOST = 'http://atlasserver.fishfairy.cn/game'
 }
 
 
