@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-10-30 14:50:28
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-23 17:32:38
+ * @LastEditTime: 2020-11-24 14:29:31
  * @Descripttion: 首页展示
  */
 import React, { useCallback, useEffect, useState } from  "react";
@@ -34,16 +34,6 @@ function Home(props) {
         setOpen(true)
     }
 
-    const deleteCallback = async () => {
-        let params = {
-            pageNo: 1,
-            pageSize
-        }
-        let res = await getAtlasList(params)
-        setAtlasList(res.atlasList)
-        setPageNo(res.pageNo)
-        setPageTotal(res.pageTotal)
-    }
     useEffect(() => {
         getAtlas()
     }, [])
@@ -90,7 +80,7 @@ function Home(props) {
                 atlasList.map((item, index) => {
                     return <Grow in={true} {...{ timeout: 2 * 1000 }} key={index}>
                     <Paper elevation={4}>
-                        <Atlas {...props} detail={item} deleteCallback={deleteCallback}/>
+                        <Atlas {...props} detail={item}/>
                     </Paper>
                 </Grow>
                 })

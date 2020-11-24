@@ -37,7 +37,13 @@ function Atlas(props) {
                 <div className="atias-create-time">
                     {detail.createTime}
                 </div>
-                <div className="delete-container" onClick={() => {deleteAtlas()}}> <i className="iconfont icon-delete"></i> </div>
+                {
+                    deleteCallback
+                    ?
+                    <div className="delete-container" onClick={() => {deleteAtlas()}}> <i className="iconfont icon-delete"></i> </div>
+                    :
+                    <></>
+                }
             </div>
         </div>
     </>

@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-10 15:00:05
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-23 18:23:07
+ * @LastEditTime: 2020-11-24 14:27:39
  * @Descripttion: 图集上传
  */
 
@@ -23,8 +23,7 @@ function Upload(props): JSX.Element {
     let [imgList, setImgList] = useState([])
     let [title, setTitle] = useState("")
 	let [introduce, setIntroduce] = useState("")
-
-    let {id} = query()
+    let id = query() && query().id
     useEffect(() => {
         if (id) {
             getDeatil()
@@ -84,7 +83,7 @@ function Upload(props): JSX.Element {
                     explain: introduce,
                     imgList: imgList
                 })
-                props.history.push("/index")
+                props.history.go(-1)
             } catch (error) {
                 console.log(error)
             }

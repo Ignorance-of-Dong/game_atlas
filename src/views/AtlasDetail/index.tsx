@@ -32,12 +32,14 @@ function AtlasDetail(props) {
     }
 
     const editAstal = () => {
-        props.history.push(`/upload?id=${detail.atlasId}`)
+        if (detail.userId == sessionStorage.getItem("userId")) {
+            props.history.push(`/upload?id=${detail.atlasId}`)
+        }
     }
 
     return <>
         <div className="detail-wrapper">
-            <Header leftIconClick={leftClick} title={detail && detail.name} leftIconName="icon-back" rightIconName="icon-edit" rightIconClick={editAstal}/>
+            <Header leftIconClick={leftClick} title={detail && detail.name} leftIconName="icon-back" rightIconName={detail && detail.userId == sessionStorage.getItem("userId") ? "icon-edit" : ""} rightIconClick={editAstal}/>
             <div className="detail-content">
                 <div className="detail-introduce">
                     介绍：
