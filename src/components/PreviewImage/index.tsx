@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-13 14:28:32
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-23 18:20:49
+ * @LastEditTime: 2020-11-25 18:20:11
  * @Descripttion: 图片预览组件封装
  */
 
@@ -91,7 +91,7 @@ function PreviewImage(props: previewImageParams): JSX.Element {
                             <i className="iconfont icon-delete"></i>删除
                         </div>
                         :
-                        <></>
+                        <div className="line"></div>
                     }
                 </div>
             ))}

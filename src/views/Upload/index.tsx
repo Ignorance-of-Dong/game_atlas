@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-10 15:00:05
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-24 14:27:39
+ * @LastEditTime: 2020-11-25 10:35:37
  * @Descripttion: 图集上传
  */
 
@@ -16,8 +16,6 @@ import query from "../../utils/useQuery"
 import {getAtlasDeatil, updateAtlas} from "../../api/index"
 import {Modal} from 'antd-mobile'
 const alert = Modal.alert;
-
-
 function Upload(props): JSX.Element {
 
     let [imgList, setImgList] = useState([])
@@ -42,10 +40,13 @@ function Upload(props): JSX.Element {
         props.history.push("/index")
     }
     const successCallback = (url) => {
+        // console.log(url, "init")
+        let arr = imgList
+        arr.push(url)
         setImgList([
-            ...imgList,
-            url
+            ...arr
         ])
+        console.log(arr, "result")
     }
 
     const deleteCallback = (val) => {
@@ -99,7 +100,7 @@ function Upload(props): JSX.Element {
 				<InputItem type="textarea" lableAliginItem="left" lable="介绍:" value={introduce} onChange={(e) => {
 					setIntroduce(e.target.value)
 				}}/>
-                <PreviewImage imgList={imgList} idEdit={id ? true : false} deleteCallback={deleteCallback}/>
+                <PreviewImage imgList={imgList} idEdit={true} deleteCallback={deleteCallback}/>
                 <UploadImage successCallback={successCallback}/>
                 <div className="update-bottom">
                     <div className="left-text">

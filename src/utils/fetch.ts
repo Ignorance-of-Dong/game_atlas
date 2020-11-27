@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-11 10:04:36
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-24 18:13:59
+ * @LastEditTime: 2020-11-26 15:18:57
  * @Descripttion: 
  */
 import { Toasts, ToastLodingPro } from 'components/index'
@@ -18,7 +18,7 @@ if (process.env.NODE_ENV == "development") {
 
 class Fetch {
 	urlList = {}
-	get(url, params?) {
+	get(url, params?, isOpen) {
 		if (params) {
 			var paramsArray = [];
 			Object.keys(params).forEach(function (key) {
@@ -39,6 +39,9 @@ class Fetch {
 			credentials: "include",
 			mode: 'cors',
 		}
+		if (isOpen) {
+			BASEHOST = ""
+		}
 		return fetch(BASEHOST + url, fetchConfig).then(response => {
 			return response.json().then((res) => {
 				if (response.ok && res.code === 200) {
@@ -49,12 +52,14 @@ class Fetch {
 			})
 		})
 	}
-	post(url, options?) {
+	post(url, options?, isOpen?) {
 		if (Object.keys(this.urlList).length === 0) {
 			ToastLodingPro.loading();
 		}
 		this.urlList[url] = url
-
+		if (isOpen) {
+			BASEHOST = ""
+		}
 		return fetch(BASEHOST + url, {
 			method: 'post',
 			headers: {

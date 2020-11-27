@@ -20,6 +20,12 @@
     }
     
 }
+.line {
+    width: 100%;
+    height: 10px;
+    border-bottom: 1px dashed #ccc;
+    // margin-top: px2rem(20);
+}
 .delete-button {
     width: 100%;
     color: red;
@@ -28,5 +34,6 @@
     border-top: 0;
     border-radius: 0 0 px2rem(10) px2rem(10);
     line-height: px2rem(100);
+    background: #ead6d6;
     text-align: center;
 }

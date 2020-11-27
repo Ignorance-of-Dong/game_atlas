@@ -11,6 +11,7 @@
         padding: 0 px2rem(20);
         overflow-y: auto;
         position: relative;
+        -webkit-overflow-scrolling: touch;
         padding-bottom: px2rem(100);
         .update-bottom {
             width: 100%;

@@ -9,6 +9,7 @@
         width: 100%;
         flex: 1;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
         .detail-introduce {
             width: 100%;
             height: auto;

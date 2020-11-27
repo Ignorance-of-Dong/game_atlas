@@ -2,7 +2,7 @@
  * @Author: zhangzheng
  * @Date: 2020-11-10 15:32:02
  * @LastEditors: zhangzheng
- * @LastEditTime: 2020-11-20 17:53:04
+ * @LastEditTime: 2020-11-25 10:27:19
  * @Descripttion: 上传图片
  */
 
@@ -12,6 +12,7 @@ import COS from "cos-js-sdk-v5";
 import {Toast, Modal} from "antd-mobile"
 import {getCosKey} from "../../api"
 import { decode } from 'js-base64';
+import { ImagePicker } from 'antd-mobile';
 interface uploadParams {
     successCallback: Function,
     className?: string
@@ -62,6 +63,8 @@ function UploadImage(props: uploadParams) {
 
     let [cos, setCos] = useState<any>(new COS())
 
+    let [files, setfiles] = useState([])
+
     useEffect(() => {
         getCos()
     },[])
@@ -87,17 +90,22 @@ function UploadImage(props: uploadParams) {
             SecretKey: key
         }))
     }
-    const uploadFile = (e) => {
+    const uploadFile = (files) => {
         let userId = sessionStorage.getItem("userId")
         if (!userId) {
             Toast.info('读取用户失败', 1);
             return
         }
         Toast.info('开始上传', 1);
-        const file = e.target.files[0];
-        const date = new Date().getTime(); // 获取上传日期，例：20200108
-        let bucketPath = `tiandao/${userId}/${date + file.name}`; // Key: 对象键（Object 的名称），对象在存储桶中的唯一标识
-        putObject([bucketPath, file]);
+        // const file = e.target.files[0];
+        for (let index = 0; index < files.length; index++) {
+            let time = new Date().getTime();
+            let bucketPath = `tiandao/${userId}/${time + files[index].file.name}`;
+            putObject([bucketPath, files[index].file]);
+        }
+        // const date = new Date().getTime(); // 获取上传日期，例：20200108
+        // let bucketPath = `tiandao/${userId}/${date + file.name}`; // Key: 对象键（Object 的名称），对象在存储桶中的唯一标识
+        
     }
     const putObject = ([key, file]) => {
         cos.putObject(
@@ -130,16 +138,30 @@ function UploadImage(props: uploadParams) {
     const showSelect = () => {
         setShow(true)
     }
+
+    const onChange = (files, type, index) => {
+        console.log(files)
+        uploadFile(files)
+    }
     return <>
         <div className={`upload-image ${className}`}>
-            <input type="file" onClick={(e) => {
+            {/* <input type="file" onClick={(e) => {
                 e.preventDefault()
                 showSelect()
-            }}/>
+            }}/> */}
+             <ImagePicker
+                length="6"
+                files={files}
+                onChange={onChange}
+                multiple
+                disableDelete
+            />
             <i className="iconfont icon-add"></i>
         </div>
         {text}
-        {ImageSelect(uploadFile, hideHandle, show)}
+        {/* {ImageSelect(uploadFile, hideHandle, show)} */}
+
+
     </>
 }
 

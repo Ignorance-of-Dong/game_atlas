@@ -7,13 +7,26 @@
     border-radius: px2rem(10);
     position: relative;
     margin-top: px2rem(20);
-    input {
+    .am-image-picker {
         display: inline-block;
         width: 100%;
         height: 100%;
         opacity: 0;
         position: absolute;
         z-index: 22;
+        .am-image-picker-list {
+            width: 100%;
+            height: 100%;
+            .am-flexbox-align-center {
+                width: 100%;
+                height: 100%;
+                display: block;
+                .am-flexbox-item {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
     }
     .icon-add {
         position: absolute;
